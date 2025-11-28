@@ -583,10 +583,7 @@ Create a user-friendly interface using Streamlit to connect your Langflow-powere
 ---
 
 #### **Fork the Repository** 🍴  
-- Visit [Agentic AI Workshop](https://github.com/difli/agentic-ai-workshop).  
 - Click **Fork** in the top-right corner of the GitHub page.  
-
-   <img src="assets/github-repo-fork.png" alt="Fork Repository on GitHub" width="800">
 
 ---
 
