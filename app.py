@@ -4,12 +4,12 @@ from datetime import datetime
 
 BASE_API_URL = "https://api.langflow.astra.datastax.com"
 LANGFLOW_ID = st.secrets['LANGFLOW_ID']
-ENDPOINT = st.secrets['ENDPOINT']
+FLOW_ID = st.secrets['FLOW_ID']
 APPLICATION_TOKEN = st.secrets['APP_TOKEN']
 
 
 def run_flow(message: str) -> dict:
-    api_url = f"{BASE_API_URL}/lf/{LANGFLOW_ID}/api/v1/run/{ENDPOINT}"
+    api_url = f"{BASE_API_URL}/lf/{LANGFLOW_ID}/api/v1/run/{FLOW_ID}"
 
     payload = {
         "input_value": message,
