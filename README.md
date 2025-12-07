@@ -236,25 +236,6 @@ The agent we developed so far cannot answer questions specific to our context an
    <img src="assets/langflow-rag-flow.png" alt="langflow-rag-flow" width="1200">
 
 ---
-
-#### **Create a New Database in Astra DB** 📋  
-- In the `Astra DB` component, click **Add New Database** to create a new database.
-
-   <img src="assets/langflow-create-database.png" alt="langflow-create-database" width="300">
-
-- Fill in the required details and click **Create Database**.
-
-   <img src="assets/langflow-create-database-1.png" alt="langflow-create-database-1" width="500">
-
-> **Note:** Database creation may take a few minutes.
-
----
-
-#### **Switch to Astra DB** 🔄  
-- Open Astra DB and navigate to your newly created database.
-
-   <img src="assets/langflow-switch-to-astradb.png" alt="langflow-switch-to-astradb" width="500">
-
 ---
 
 #### **Create an FAQ Collection** 🗂️  
@@ -462,19 +443,17 @@ Create a flow that retrieves order details and related product information from 
 ---
 
 #### **Add Astra DB Components** 📦  
-- Drag and drop an **Astra DB** component for the `orders` collection:
+- Drag and drop an **Astra DB Tool** component for the `orders` collection:
   - **Tool Name:** `OrderLookup`  
-  - **Database Name:** `customer-support`  
+  - **Database API endpoint:** `Your API Endpoint`  
   - **Collection Name:** `orders`  
   - **Tool Description:** `A tool used to look up an order based on its ID.`  
-  - **Tool Params:** `!orderNumber`  
 
-- Drag and drop another **Astra DB** component for the `products` collection:
+- Drag and drop another **Astra DB Tool** component for the `products` collection:
   - **Tool Name:** `ProductLookup`  
-  - **Database Name:** `customer-support`  
+  - **Database API endpoint:** `Your API Endpoint`  
   - **Collection Name:** `products`  
   - **Tool Description:** `A tool used to look up a product based on its ID.`  
-  - **Tool Params:** `!productId`  
 
 ---
 
@@ -576,7 +555,7 @@ Always aim to deliver clear, concise, and user-focused solutions to ensure the b
 
 ---
 
-### Step 9: **Integrate with a Python Front End** 🖥️🐍
+### OPTIONAL : **Integrate with a Python Front End** 🖥️🐍
 
 Create a user-friendly interface using Streamlit to connect your Langflow-powered backend with end users seamlessly.
 
