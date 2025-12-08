@@ -613,17 +613,17 @@ Create a user-friendly interface using Streamlit to connect your Langflow-powere
    <img src="assets/langflow-generate-token.png" alt="Generate Token Button on Langflow" width="800">
   
 
-# Langflow OSS Configuration
-# Update these values with your local Langflow instance details
+#### Langflow OSS Configuration
+#### Update these values with your local Langflow instance details
 
-# Base URL of your Langflow instance (default: http://localhost:7860)
+#### Base URL of your Langflow instance (default: http://localhost:7860)
 BASE_API_URL = "http://localhost:7860"
 
-# Your Langflow flow ID (get this from your Langflow flow settings)
+#### Your Langflow flow ID (get this from your Langflow flow settings)
 FLOW_ID = ""
 
-# Optional: API key if your Langflow instance requires authentication
-# Leave empty if authentication is disabled
+#### Optional: API key if your Langflow instance requires authentication
+#### Leave empty if authentication is disabled
 LANGFLOW_API_KEY = ""
 
 
