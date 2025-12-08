@@ -487,8 +487,6 @@ Create a flow that retrieves order details and related product information from 
 #### **Validate the Flow** ✅  
 - Click the **Play** button on the `OrderLookupAgent` to verify the flow is configured correctly.  
 
-   <img src="assets/langflow-agent-check-flow.png" alt="langflow-agent-check-flow" width="800">
-
 ---
 
 > **🎉 Congratulations!** You’ve successfully built an `OrderLookupAgent` that retrieves and combines order and product data from your Astra DB collections. This forms a vital component of your customer support system!
@@ -525,8 +523,6 @@ Always aim to deliver clear, concise, and user-focused solutions to ensure the b
 
 #### **Connect Tools to ManagementAgent** 🔗  
 - Link the `OrderLookupAgent` component’s `Toolset` endpoint to the `ManagementAgent` component’s `Tools` endpoint.
-
-   <img src="assets/langflow-complete-flow.png" alt="langflow-complete-flow" width="800">
 
 ---
 
@@ -616,28 +612,21 @@ Create a user-friendly interface using Streamlit to connect your Langflow-powere
 
    <img src="assets/langflow-generate-token.png" alt="Generate Token Button on Langflow" width="800">
   
-- Click the **copy icon** on the right-hand side. Paste the token into your `secrets.toml`.  
 
-   <img src="assets/langflow-copy-token.png" alt="Copy Token Button on Langflow" width="800">
-  
-- Copy your **Langflow ID** from the curl command and paste it into your `secrets.toml`.  
+# Langflow OSS Configuration
+# Update these values with your local Langflow instance details
 
-   <img src="assets/langflow-token-and-id.png" alt="Langflow ID and Token" width="600">
+# Base URL of your Langflow instance (default: http://localhost:7860)
+BASE_API_URL = "http://localhost:7860"
 
-- Click **Flow Settings** to see the **Endpoint Name** you have configured for the flow at the start of the workshop.  
+# Your Langflow flow ID (get this from your Langflow flow settings)
+FLOW_ID = ""
 
-   <img src="assets/langflow-flow-settings.png" alt="Langflow Flow Settings" width="800">
+# Optional: API key if your Langflow instance requires authentication
+# Leave empty if authentication is disabled
+LANGFLOW_API_KEY = ""
 
-- Copy the **Endpoint Name** and paste it into your `secrets.toml`.  
 
-   <img src="assets/langflow-flow-settings-1.png" alt="Langflow Flow Settings 1" width="500">
-
-- Your `secrets.toml` file should now contain your credentials:  
-   ```plaintext
-   APP_TOKEN="AstraCS:LKeBuZvesCUlokSbiNfjCvAG:e291f0b1f37925cb31565d859bc56ec25cc1371..."
-   LANGFLOW_ID="cc011911-e624-4ec4-81d0-f1894f2..."
-   ENDPOINT="customer-support"   
-   ```
 ---
 
 #### **Run the Application** ▶️  
@@ -706,79 +695,6 @@ git push origin main
 🎉 Congratulations on building a cutting-edge AI system! Expand your skills further by exploring new use cases like inventory management, knowledge retrieval, or personalized recommendations. Let's innovate! 🚀
 
 🤔 **What will you build next?** The tools are in your hands. 💡🌟
-
----
-
-## Appendix: Understanding `app.py` 📝
-
-The `app.py` file serves as the backbone of your application, connecting the **Streamlit** front end with the **Langflow-powered backend**. Here's a breakdown of its key components:
-
----
-
-### **API Integration**
-
-The `run_flow()` function is responsible for communicating with the Langflow backend:
-- **Base API URL**: Retrieved from the `secrets.toml` file (`LANGFLOW_ID`, `ENDPOINT`, and `APP_TOKEN`).
-- **Payload**: Sends user input to the backend in JSON format.
-- **Response Handling**: Extracts the AI-generated response for display in the UI.
-
-Code Snippet:
-```python
-def run_flow(message: str) -> dict:
-    api_url = f"{BASE_API_URL}/lf/{LANGFLOW_ID}/api/v1/run/{ENDPOINT}"
-
-    payload = {
-        "input_value": message,
-        "output_type": "chat",
-        "input_type": "chat",
-    }
-
-    headers = {"Authorization": "Bearer " + APPLICATION_TOKEN, "Content-Type": "application/json"}
-    response = requests.post(api_url, json=payload, headers=headers)
-    return response.json()
-```
-
----
-
-### **Streamlit Front End**
-
-The Streamlit front end provides an intuitive interface for user interactions:
-- **Chat Input and Output**: Users submit queries, and AI responses are displayed as styled chat bubbles.
-- **Sample Questions**: Buttons provide quick access to predefined queries.
-- **Custom Styling**: CSS enhances the visual appeal of the chat interface.
-
-Code Snippet (Input and Response Handling):
-```python
-# Display chat history
-for message in st.session_state["messages"]:
-    # User's message
-    st.markdown(f'<div class="chat-bubble-user">{message["user"]}</div>', unsafe_allow_html=True)
-    # Bot's response
-    st.markdown(f'<div class="chat-bubble">{message["bot"]}</div>', unsafe_allow_html=True)
-```
-
----
-
-### **Custom Styling**
-
-Custom CSS styles ensure the app is visually appealing and user-friendly. Example:
-```css
-.chat-bubble {
-    background-color: #007bff;
-    color: white;
-    padding: 10px;
-    border-radius: 15px;
-}
-```
-
----
-
-### **Secrets Management**
-
-The `secrets.toml` file stores sensitive credentials:
-- **Langflow ID**: Identifies the specific flow to connect.
-- **Application Token**: Authenticates API requests.
-- **Endpoint**: Specifies the Langflow backend entry point.
 
 ---
 
